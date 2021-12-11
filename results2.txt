@@ -1,0 +1,123 @@
+    model = tf.keras.Sequential([
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Flatten(),
+        layers.Dense(256, activation='relu'),
+        layers.Dense(num_classes)
+    ])
+    data_augmentation = tf.keras.Sequential([
+        layers.RandomFlip("horizontal_and_vertical"),
+        layers.RandomRotation(0.2),
+    ])
+
+something
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': True, 'epochs': 500, 'batch_size': 64}
+Accuracy after 20 epochs: 0.548000
+Accuracy after 40 epochs: 0.578400
+Accuracy after 60 epochs: 0.593200
+Accuracy after 80 epochs: 0.602000
+Accuracy after 100 epochs: 0.636000
+Accuracy after 120 epochs: 0.644600
+Accuracy after 140 epochs: 0.645900
+Accuracy after 160 epochs: 0.663500
+Accuracy after 180 epochs: 0.667700
+Accuracy after 200 epochs: 0.675300
+Accuracy after 220 epochs: 0.662500
+Accuracy after 240 epochs: 0.677900
+Accuracy after 260 epochs: 0.652500
+Accuracy after 280 epochs: 0.661200
+Accuracy after 300 epochs: 0.692600
+Accuracy after 320 epochs: 0.684600
+Accuracy after 340 epochs: 0.688000
+Accuracy after 360 epochs: 0.688800
+Accuracy after 380 epochs: 0.668600
+Accuracy after 400 epochs: 0.699500
+Accuracy after 420 epochs: 0.707100
+Accuracy after 440 epochs: 0.671000
+Accuracy after 460 epochs: 0.703000
+Accuracy after 480 epochs: 0.696200
+Accuracy after 500 epochs: 0.644600
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': True, 'epochs': 500, 'batch_size': 128}
+Accuracy after 20 epochs: 0.553300
+Accuracy after 40 epochs: 0.586100
+Accuracy after 60 epochs: 0.627900
+Accuracy after 80 epochs: 0.650800
+Accuracy after 100 epochs: 0.655000
+Accuracy after 120 epochs: 0.671900
+Accuracy after 140 epochs: 0.668900
+Accuracy after 160 epochs: 0.675800
+Accuracy after 180 epochs: 0.658500
+Accuracy after 200 epochs: 0.691900
+Accuracy after 220 epochs: 0.670800
+Accuracy after 240 epochs: 0.684000
+Accuracy after 260 epochs: 0.682300
+Accuracy after 280 epochs: 0.691200
+Accuracy after 300 epochs: 0.695300
+Accuracy after 320 epochs: 0.707000
+Accuracy after 340 epochs: 0.698200
+Accuracy after 360 epochs: 0.707400
+Accuracy after 380 epochs: 0.701500
+Accuracy after 400 epochs: 0.707800
+Accuracy after 420 epochs: 0.706900
+Accuracy after 440 epochs: 0.703800
+Accuracy after 460 epochs: 0.691200
+Accuracy after 480 epochs: 0.708300
+Accuracy after 500 epochs: 0.699200
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': True, 'epochs': 500, 'batch_size': 256}
+Accuracy after 20 epochs: 0.503900
+Accuracy after 40 epochs: 0.601600
+Accuracy after 60 epochs: 0.621400
+Accuracy after 80 epochs: 0.665400
+Accuracy after 100 epochs: 0.666400
+Accuracy after 120 epochs: 0.671500
+Accuracy after 140 epochs: 0.672000
+Accuracy after 160 epochs: 0.693800
+Accuracy after 180 epochs: 0.686600
+Accuracy after 200 epochs: 0.706100
+Accuracy after 220 epochs: 0.677000
+Accuracy after 240 epochs: 0.695100
+Accuracy after 260 epochs: 0.695700
+Accuracy after 280 epochs: 0.688500
+Accuracy after 300 epochs: 0.692100
+Accuracy after 320 epochs: 0.696300
+Accuracy after 340 epochs: 0.724900
+Accuracy after 360 epochs: 0.712200
+Accuracy after 380 epochs: 0.711600
+Accuracy after 400 epochs: 0.698800
+Accuracy after 420 epochs: 0.696300
+Accuracy after 440 epochs: 0.702400
+Accuracy after 460 epochs: 0.705300
+Accuracy after 480 epochs: 0.724400
+Accuracy after 500 epochs: 0.715500
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': False, 'epochs': 100, 'batch_size': 64}
+Accuracy after 20 epochs: 0.663400
+Accuracy after 40 epochs: 0.683400
+Accuracy after 60 epochs: 0.680800
+Accuracy after 80 epochs: 0.668300
+Accuracy after 100 epochs: 0.677800
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': False, 'epochs': 100, 'batch_size': 128}
+Accuracy after 20 epochs: 0.675000
+Accuracy after 40 epochs: 0.671400
+Accuracy after 60 epochs: 0.674900
+Accuracy after 80 epochs: 0.675200
+Accuracy after 100 epochs: 0.671500
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': False, 'epochs': 100, 'batch_size': 256}
+Accuracy after 20 epochs: 0.691200
+Accuracy after 40 epochs: 0.696800
+Accuracy after 60 epochs: 0.692600
+Accuracy after 80 epochs: 0.702800
+Accuracy after 100 epochs: 0.695500

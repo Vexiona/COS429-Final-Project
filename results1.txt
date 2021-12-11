@@ -1,0 +1,39 @@
+    model = tf.keras.Sequential([
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Flatten(),
+        layers.Dense(128, activation='relu'),
+        layers.Dense(num_classes)
+    ])
+    data_augmentation = tf.keras.Sequential([
+        layers.RandomFlip("horizontal_and_vertical"),
+        layers.RandomRotation(0.2),
+    ])
+
+something
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': True, 'epochs': 50, 'batch_size': 16}
+Accuracy 0.5449000000953674
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': True, 'epochs': 50, 'batch_size': 32}
+Accuracy 0.578499972820282
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': True, 'epochs': 50, 'batch_size': 64}
+Accuracy 0.6330000162124634
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': True, 'epochs': 50, 'batch_size': 128}
+Accuracy 0.6653000116348267
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': False, 'epochs': 50, 'batch_size': 16}
+Accuracy 0.6620000004768372
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': False, 'epochs': 50, 'batch_size': 32}
+Accuracy 0.6895999908447266
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': False, 'epochs': 50, 'batch_size': 64}
+Accuracy 0.6952999830245972
+{'dataset': 'cifar10', 'size_x': 32, 'size_y': 32, 'augment': False, 'epochs': 50, 'batch_size': 128}
+Accuracy 0.701200008392334

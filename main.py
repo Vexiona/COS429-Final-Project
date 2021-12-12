@@ -2,12 +2,13 @@ from tensorflow.python.framework.ops import reset_default_graph
 import tensorflow_datasets as tsdf
 import tensorflow as tf
 from tensorflow.keras import layers
+from keras import regularizers
 import matplotlib.pyplot as plt
 import sys
 import numpy as np
 from augment import *
 
-EPOCHS_BATCH = 20
+EPOCHS_BATCH = 2
 
 def prepare(ds, batch_size, shuffle=False, augment=False):
     ds = ds.map(lambda x, y: (resize_and_rescale(x), y), 
@@ -30,27 +31,44 @@ tests = [
         "size_x": 32,
         "size_y": 32,
         "augment": True,
-        "epochs": 100,
-        "batch_size": 128,
-        "learning_rate": 2e-4
-    },
-    {
-        "dataset": "cifar10",
-        "size_x": 32,
-        "size_y": 32,
-        "augment": False,
-        "epochs": 60,
-        "batch_size": 128,
-        "learning_rate": 2e-4
-    },
-    {
-        "dataset": "cifar10",
-        "size_x": 32,
-        "size_y": 32,
-        "augment": False,
-        "epochs": 60,
+        "epochs": 250,
         "batch_size": 256,
-        "learning_rate": 2e-4
+        "learning_rate": 3e-4,
+        "weight_decay": 1e-4,
+        "split": ['train[:80%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "cifar10",
+        "size_x": 32,
+        "size_y": 32,
+        "augment": False,
+        "epochs": 50,
+        "batch_size": 128,
+        "learning_rate": 2e-4,
+        "weight_decay": 1e-4,
+        "split": ['train[:80%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "cifar10",
+        "size_x": 32,
+        "size_y": 32,
+        "augment": True,
+        "epochs": 250,
+        "batch_size": 128,
+        "learning_rate": 3e-4,
+        "weight_decay": 1e-4,
+        "split": ['train[:80%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "cifar10",
+        "size_x": 32,
+        "size_y": 32,
+        "augment": True,
+        "epochs": 250,
+        "batch_size": 64,
+        "learning_rate": 3e-4,
+        "weight_decay": 1e-4,
+        "split": ['train[:80%]', 'train[80%:]', 'test']
     },
 ]
 
@@ -70,15 +88,16 @@ for test in tests:
     ])
 
     data_augmentation = tf.keras.Sequential([
-        layers.RandomFlip("horizontal_and_vertical"),
-        layers.RandomRotation(0.2),
-        layers.Lambda(lambda x: saturate(x)),
-        layers.Lambda(lambda x: crop(x, test['size_x'], test['size_y']))
+        layers.RandomFlip("horizontal"),
+        layers.RandomRotation(0.15),
+        #layers.Lambda(lambda x: saturate(x, 0.25)),
+        layers.Lambda(lambda x: shiney(x, 0.2)),
+        #layers.Lambda(lambda x: crop(x, 0.9, test['size_x'], test['size_y']))
     ])
 
     (ds_train, ds_val, ds_test), meta = tsdf.load(
         test['dataset'],
-        split=['train[:80%]', 'train[80%:]', 'test'],
+        split=test['split'],
         data_dir=sys.path[0],
         with_info=True,
         as_supervised=True)
@@ -86,21 +105,37 @@ for test in tests:
     num_classes = meta.features['label'].num_classes
 
     model = tf.keras.Sequential([
-        layers.Conv2D(16, 3, padding='same', activation='relu'),
-        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.Conv2D(16, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
+        layers.Conv2D(16, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
         layers.MaxPooling2D(),
-        layers.Conv2D(32, 3, padding='same', activation='relu'),
-        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.Dropout(0.1),
+
+        layers.Conv2D(32, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
+        layers.Conv2D(32, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
         layers.MaxPooling2D(),
-        layers.Conv2D(64, 3, padding='same', activation='relu'),
-        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.Dropout(0.2),
+
+        layers.Conv2D(64, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
+        layers.Conv2D(64, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
         layers.MaxPooling2D(),
-        layers.Conv2D(128, 3, padding='same', activation='relu'),
-        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.Dropout(0.3),
+
+        layers.Conv2D(128, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
+        layers.Conv2D(128, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
         layers.MaxPooling2D(),
+        layers.Dropout(0.4),
+
         layers.Flatten(),
-        layers.Dense(1024, activation='relu'),
-        layers.Dense(num_classes)
+        #layers.Dense(1024, activation='elu'),
+        layers.Dense(num_classes, activation='softmax')
     ])
 
     model.compile(

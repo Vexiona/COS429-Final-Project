@@ -6,15 +6,19 @@ def init_seed(seed):
     random.seed(seed)
 
 def rand(x, y):
-    return int(random.random()*(y-x)+x)
+    return random.random()*(y-x)+x
 
 def gen_tf_seed():
     return (random.randint(1, 1000), random.randint(1, 1000))
 
-def saturate(x):
-    return tf.image.stateless_random_saturation(x, 0.5, 2, seed=gen_tf_seed())
+def saturate(x, factor):
+    return tf.image.stateless_random_saturation(x, 1-factor, 1+factor, seed=gen_tf_seed())
 
-def crop(x, size_x, size_y):
+def crop(x, factor, size_x, size_y):
+    r = rand(factor, 1)
     return layers.Resizing(size_x, size_y)(
-        tf.image.stateless_random_crop(x, [rand(0.8*size_x, size_x), rand(0.8*size_y, size_y), 3], seed=gen_tf_seed())
+        tf.image.stateless_random_crop(x, [int(r*size_x), int(r*size_y), 3], seed=gen_tf_seed())
     )
+
+def shiney(x, factor):
+    return tf.image.stateless_random_brightness(x, factor, seed=gen_tf_seed())

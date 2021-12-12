@@ -1,0 +1,39 @@
+    model = tf.keras.Sequential([
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Flatten(),
+        layers.Dense(1024, activation='relu'),
+        layers.Dense(num_classes)
+    ])
+    data_augmentation = tf.keras.Sequential([
+        layers.RandomFlip("horizontal"),
+        layers.RandomRotation(0.2),
+        layers.Lambda(lambda x: saturate(x)),
+        layers.Lambda(lambda x: crop(x, test['size_x'], test['size_y']))
+    ])
+
+something
+{'dataset': 'caltech101', 'size_x': 200, 'size_y': 300, 'augment': True, 'epochs': 100, 'batch_size': 128, 'learning_rate': 0.0002}
+Accuracy after 20 epochs: Train: 0.361520, Val: 0.184641, Test: 0.237673
+Accuracy after 40 epochs: Train: 0.723039, Val: 0.184641, Test: 0.266930
+Accuracy after 60 epochs: Train: 0.897876, Val: 0.196078, Test: 0.246384
+Accuracy after 80 epochs: Train: 0.958333, Val: 0.200980, Test: 0.295529
+Accuracy after 100 epochs: Train: 0.955882, Val: 0.196078, Test: 0.282544
+{'dataset': 'caltech101', 'size_x': 200, 'size_y': 300, 'augment': False, 'epochs': 60, 'batch_size': 128, 'learning_rate': 0.0002}
+Accuracy after 20 epochs: Train: 1.000000, Val: 0.344771, Test: 0.472222
+Accuracy after 40 epochs: Train: 1.000000, Val: 0.339869, Test: 0.473866
+Accuracy after 60 epochs: Train: 1.000000, Val: 0.333333, Test: 0.473866
+{'dataset': 'caltech101', 'size_x': 200, 'size_y': 300, 'augment': False, 'epochs': 60, 'batch_size': 256, 'learning_rate': 0.0002}
+Accuracy after 20 epochs: Train: 0.999183, Val: 0.320261, Test: 0.464168
+Accuracy after 40 epochs: Train: 1.000000, Val: 0.331699, Test: 0.466141
+Accuracy after 60 epochs: Train: 1.000000, Val: 0.333333, Test: 0.466141

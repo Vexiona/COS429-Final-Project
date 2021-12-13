@@ -1,0 +1,34 @@
+something
+{'dataset': 'cats_vs_dogs', 'size_x': 200, 'size_y': 200, 'augment': 'deep', 'epochs': 64, 'batch_size': 128, 'learning_rate': 0.001, 'weight_decay': 0.0001, 'split': ['train[:80%]', 'train[80%:90%]', 'train[90%:]']}
+Accuracy after 2 epochs: Train: 0.623804, Val: 0.608341, Test: 0.602322
+Accuracy after 4 epochs: Train: 0.685223, Val: 0.708083, Test: 0.706793
+Accuracy after 6 epochs: Train: 0.698066, Val: 0.718831, Test: 0.716681
+Accuracy after 8 epochs: Train: 0.737775, Val: 0.724420, Test: 0.740757
+Accuracy after 10 epochs: Train: 0.760344, Val: 0.735598, Test: 0.755804
+Accuracy after 12 epochs: Train: 0.757227, Val: 0.743336, Test: 0.767412
+Accuracy after 14 epochs: Train: 0.775228, Val: 0.753224, Test: 0.769991
+Accuracy after 16 epochs: Train: 0.772058, Val: 0.764402, Test: 0.776870
+Accuracy after 18 epochs: Train: 0.777593, Val: 0.766122, Test: 0.785899
+Accuracy after 20 epochs: Train: 0.785599, Val: 0.787188, Test: 0.796217
+Accuracy after 22 epochs: Train: 0.795809, Val: 0.792777, Test: 0.802666
+Accuracy after 24 epochs: Train: 0.803332, Val: 0.776440, Test: 0.797936
+Accuracy after 26 epochs: Train: 0.813326, Val: 0.784179, Test: 0.812124
+Accuracy after 28 epochs: Train: 0.815422, Val: 0.797077, Test: 0.820722
+Accuracy after 30 epochs: Train: 0.814562, Val: 0.799226, Test: 0.810404
+Accuracy after 32 epochs: Train: 0.834175, Val: 0.804815, Test: 0.822012
+Accuracy after 34 epochs: Train: 0.833799, Val: 0.814703, Test: 0.822872
+Accuracy after 36 epochs: Train: 0.837453, Val: 0.808684, Test: 0.825881
+Accuracy after 38 epochs: Train: 0.832724, Val: 0.796647, Test: 0.812984
+Accuracy after 40 epochs: Train: 0.840408, Val: 0.803525, Test: 0.813414
+Accuracy after 42 epochs: Train: 0.847394, Val: 0.800516, Test: 0.818573
+Accuracy after 44 epochs: Train: 0.840838, Val: 0.789768, Test: 0.810834
+Accuracy after 46 epochs: Train: 0.849221, Val: 0.806965, Test: 0.832330
+Accuracy after 48 epochs: Train: 0.860183, Val: 0.791488, Test: 0.822442
+Accuracy after 50 epochs: Train: 0.863675, Val: 0.814273, Test: 0.819003
+Accuracy after 52 epochs: Train: 0.862816, Val: 0.806535, Test: 0.821582
+Accuracy after 54 epochs: Train: 0.878237, Val: 0.812554, Test: 0.832330
+Accuracy after 56 epochs: Train: 0.869962, Val: 0.808684, Test: 0.824162
+Accuracy after 58 epochs: Train: 0.867114, Val: 0.809974, Test: 0.838349
+Accuracy after 60 epochs: Train: 0.867061, Val: 0.802666, Test: 0.828461
+Accuracy after 62 epochs: Train: 0.882106, Val: 0.804815, Test: 0.820722
+Accuracy after 64 epochs: Train: 0.878237, Val: 0.812554, Test: 0.831040

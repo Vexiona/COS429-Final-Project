@@ -1,0 +1,36 @@
+something
+{'dataset': 'cats_vs_dogs', 'size_x': 200, 'size_y': 200, 'augment': 'none', 'epochs': 32, 'batch_size': 128, 'learning_rate': 0.001, 'weight_decay': 0.0001, 'split': ['train[:20%]', 'train[80%:90%]', 'train[90%:]']}
+Accuracy after 2 epochs: Train: 0.671539, Val: 0.650903, Test: 0.636715
+Accuracy after 4 epochs: Train: 0.851032, Val: 0.699914, Test: 0.700344
+Accuracy after 6 epochs: Train: 0.958942, Val: 0.710232, Test: 0.715391
+Accuracy after 8 epochs: Train: 0.986887, Val: 0.697334, Test: 0.701204
+Accuracy after 10 epochs: Train: 0.991187, Val: 0.693035, Test: 0.707653
+Accuracy after 12 epochs: Train: 0.999140, Val: 0.702494, Test: 0.713242
+Accuracy after 14 epochs: Train: 1.000000, Val: 0.703783, Test: 0.715391
+Accuracy after 16 epochs: Train: 1.000000, Val: 0.702494, Test: 0.711952
+Accuracy after 18 epochs: Train: 1.000000, Val: 0.706363, Test: 0.717541
+Accuracy after 20 epochs: Train: 1.000000, Val: 0.705933, Test: 0.719261
+Accuracy after 22 epochs: Train: 1.000000, Val: 0.704643, Test: 0.717541
+Accuracy after 24 epochs: Train: 1.000000, Val: 0.710232, Test: 0.717111
+Accuracy after 26 epochs: Train: 1.000000, Val: 0.708942, Test: 0.714531
+Accuracy after 28 epochs: Train: 1.000000, Val: 0.711952, Test: 0.715821
+Accuracy after 30 epochs: Train: 1.000000, Val: 0.705503, Test: 0.714101
+Accuracy after 32 epochs: Train: 1.000000, Val: 0.706363, Test: 0.716251
+{'dataset': 'cats_vs_dogs', 'size_x': 200, 'size_y': 200, 'augment': 'none', 'epochs': 32, 'batch_size': 128, 'learning_rate': 0.001, 'weight_decay': 0.0001, 'split': ['train[:40%]', 'train[80%:90%]', 'train[90%:]']}
+Accuracy after 2 epochs: Train: 0.738635, Val: 0.662511, Test: 0.677988
+Accuracy after 4 epochs: Train: 0.871789, Val: 0.707223, Test: 0.714101
+Accuracy after 6 epochs: Train: 0.878452, Val: 0.647893, Test: 0.688306
+Accuracy after 8 epochs: Train: 0.984524, Val: 0.702923, Test: 0.716681
+Accuracy after 10 epochs: Train: 0.988716, Val: 0.701634, Test: 0.704643
+Accuracy after 12 epochs: Train: 0.993229, Val: 0.687446, Test: 0.709372
+Accuracy after 14 epochs: Train: 0.999893, Val: 0.714531, Test: 0.730868
+Accuracy after 16 epochs: Train: 0.999893, Val: 0.704643, Test: 0.726139
+Accuracy after 18 epochs: Train: 1.000000, Val: 0.711522, Test: 0.726569
+Accuracy after 20 epochs: Train: 1.000000, Val: 0.705073, Test: 0.732588
+Accuracy after 22 epochs: Train: 1.000000, Val: 0.711522, Test: 0.735168
+Accuracy after 24 epochs: Train: 0.990543, Val: 0.705503, Test: 0.723990
+Accuracy after 26 epochs: Train: 0.997528, Val: 0.703783, Test: 0.716681
+Accuracy after 28 epochs: Train: 0.999893, Val: 0.694755, Test: 0.720120
+Accuracy after 30 epochs: Train: 1.000000, Val: 0.699914, Test: 0.724420
+Accuracy after 32 epochs: Train: 0.999785, Val: 0.700774, Test: 0.723560
+{'dataset': 'cats_vs_dogs', 'size_x': 200, 'size_y': 200, 'augment': 'none', 'epochs': 32, 'batch_size': 128, 'learning_rate': 0.001, 'weight_decay': 0.0001, 'split': ['train[:80%]', 'train[80%:90%]', 'train[90%:]']}

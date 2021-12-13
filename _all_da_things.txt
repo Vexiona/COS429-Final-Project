@@ -226,36 +226,35 @@ deep net (16 layers total, 8 conv layers):
         Train: 0.804815, Val: 0.746346, Test: 0.754084
 shallow net (7 layers total, 2 conv layers):
     model = tf.keras.Sequential([
-        layers.Conv2D(64, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
         layers.MaxPooling2D(),
-        layers.Dropout(0.05),
-
-        layers.Conv2D(128, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
         layers.MaxPooling2D(),
-
         layers.Flatten(),
-        layers.Dense(num_classes, activation='softmax')
+        layers.Dense(1024, activation='relu'),
+        layers.Dropout(0.1),
+        layers.Dense(num_classes)
     ])
     "epochs": 64,
     "batch_size": 128,
-    "learning_rate": 5e-4,
+    "learning_rate": 1e-3,
     "weight_decay": 1e-4,
     ------------------------------------------------------------------------------------------------------------------------
     deep aug (horiz_flip+rot+sat+brightness+contrast+hue+invert):
-        Train: 0.625950, Val: 0.598100, Test: 0.595700
+        Train: 0.867114, Val: 0.809974, Test: 0.838349
     deep aug, 50%:
-        Train: 0.591150, Val: 0.582400, Test: 0.580000
+        Train: 0.854272, Val: 0.774721, Test: 0.796647
     deep aug, 25%:
-        Train: 0.608300, Val: 0.539800, Test: 0.542300
+        Train: 0.831040, Val: 0.758813, Test: 0.781599
     shallow aug (horiz_flip+rot+brightness):
-        Train: 0.688450, Val: 0.668900, Test: 0.662500
+        Train: 0.867222, Val: 0.787618, Test: 0.799656
     shallow aug, 50%:
-        Train: 0.662400, Val: 0.629000, Test: 0.629800
+        Train: 0.910478, Val: 0.752795, Test: 0.769132
     shallow aug, 25%:
-        Train: 0.678100, Val: 0.612500, Test: 0.619500
+        Train: 0.780739, Val: 0.701634, Test: 0.693035
     no aug:
-        Train: 0.757575, Val: 0.664900, Test: 0.666000
+        Train: 0.997958, Val: 0.741187, Test: 0.748495
     no aug, 50%:
-        Train: 0.766200, Val: 0.625000, Test: 0.633300
+        Train: 1.000000, Val: 0.711522, Test: 0.735168
     no aug, 25%:
-        Train: 0.961700, Val: 0.585300, Test: 0.595700
+        Train: 1.000000, Val: 0.705933, Test: 0.719261

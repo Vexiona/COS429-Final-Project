@@ -28,51 +28,104 @@ def prepare(ds, batch_size, shuffle=False, augment=False):
 tests = [
     {
         "dataset": "cifar10",
-        "size_x": 32,
-        "size_y": 32,
-        "augment": True,
-        "epochs": 250,
-        "batch_size": 256,
-        "learning_rate": 3e-4,
-        "weight_decay": 1e-4,
-        "split": ['train[:80%]', 'train[80%:]', 'test']
-    },
-    {
-        "dataset": "cifar10",
-        "size_x": 32,
-        "size_y": 32,
-        "augment": False,
-        "epochs": 50,
+        "size_x": None,
+        "size_y": None,
+        "augment": "none",
+        "epochs": 128,
         "batch_size": 128,
-        "learning_rate": 2e-4,
+        "learning_rate": 5e-4,
         "weight_decay": 1e-4,
-        "split": ['train[:80%]', 'train[80%:]', 'test']
+        "split": ['train[:20%]', 'train[80%:]', 'test']
     },
     {
         "dataset": "cifar10",
-        "size_x": 32,
-        "size_y": 32,
-        "augment": True,
-        "epochs": 250,
+        "size_x": None,
+        "size_y": None,
+        "augment": "none",
+        "epochs": 128,
         "batch_size": 128,
-        "learning_rate": 3e-4,
+        "learning_rate": 5e-4,
+        "weight_decay": 1e-4,
+        "split": ['train[:40%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "cifar10",
+        "size_x": None,
+        "size_y": None,
+        "augment": "none",
+        "epochs": 128,
+        "batch_size": 128,
+        "learning_rate": 5e-4,
         "weight_decay": 1e-4,
         "split": ['train[:80%]', 'train[80%:]', 'test']
     },
     {
         "dataset": "cifar10",
-        "size_x": 32,
-        "size_y": 32,
-        "augment": True,
-        "epochs": 250,
-        "batch_size": 64,
-        "learning_rate": 3e-4,
+        "size_x": None,
+        "size_y": None,
+        "augment": "shallow",
+        "epochs": 256,
+        "batch_size": 128,
+        "learning_rate": 5e-4,
+        "weight_decay": 1e-4,
+        "split": ['train[:20%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "cifar10",
+        "size_x": None,
+        "size_y": None,
+        "augment": "shallow",
+        "epochs": 256,
+        "batch_size": 128,
+        "learning_rate": 5e-4,
+        "weight_decay": 1e-4,
+        "split": ['train[:40%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "cifar10",
+        "size_x": None,
+        "size_y": None,
+        "augment": "shallow",
+        "epochs": 256,
+        "batch_size": 128,
+        "learning_rate": 5e-4,
+        "weight_decay": 1e-4,
+        "split": ['train[:80%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "cifar10",
+        "size_x": None,
+        "size_y": None,
+        "augment": "deep",
+        "epochs": 256,
+        "batch_size": 128,
+        "learning_rate": 5e-4,
+        "weight_decay": 1e-4,
+        "split": ['train[:20%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "cifar10",
+        "size_x": None,
+        "size_y": None,
+        "augment": "deep",
+        "epochs": 256,
+        "batch_size": 128,
+        "learning_rate": 5e-4,
+        "weight_decay": 1e-4,
+        "split": ['train[:40%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "cifar10",
+        "size_x": None,
+        "size_y": None,
+        "augment": "deep",
+        "epochs": 256,
+        "batch_size": 128,
+        "learning_rate": 5e-4,
         "weight_decay": 1e-4,
         "split": ['train[:80%]', 'train[80%:]', 'test']
     },
 ]
-
-datasets = ['cifar10', 'cifar100']
 
 res = open("results.txt", "w")
 print("something", file=res, flush=True)
@@ -80,20 +133,6 @@ print("something", file=res, flush=True)
 for test in tests:
     tf.random.set_seed(1234)
     init_seed(4321)
-    print(test, file=res, flush=True)
-
-    resize_and_rescale = tf.keras.Sequential([
-        layers.Resizing(test['size_x'], test['size_y']),
-        layers.Rescaling(1./255)
-    ])
-
-    data_augmentation = tf.keras.Sequential([
-        layers.RandomFlip("horizontal"),
-        layers.RandomRotation(0.15),
-        #layers.Lambda(lambda x: saturate(x, 0.25)),
-        layers.Lambda(lambda x: shiney(x, 0.2)),
-        #layers.Lambda(lambda x: crop(x, 0.9, test['size_x'], test['size_y']))
-    ])
 
     (ds_train, ds_val, ds_test), meta = tsdf.load(
         test['dataset'],
@@ -103,6 +142,38 @@ for test in tests:
         as_supervised=True)
 
     num_classes = meta.features['label'].num_classes
+    tmp_x = meta.features['image'].shape[0]
+    tmp_y = meta.features['image'].shape[1]
+    if tmp_x != None and tmp_y != None:
+        test['size_x'] = tmp_x
+        test['size_y'] = tmp_y
+    print(test, file=res, flush=True)
+
+    resize_and_rescale = tf.keras.Sequential([
+        layers.Resizing(test['size_x'], test['size_y']),
+        layers.Rescaling(1./255)
+    ])
+
+    if test['augment'] == "deep":
+        data_augmentation = tf.keras.Sequential([
+            layers.RandomFlip("horizontal"),
+            layers.RandomRotation(0.15),
+            layers.Lambda(lambda x: saturate(x, 0.15)),
+            layers.Lambda(lambda x: shiney(x, 0.3)),
+            layers.Lambda(lambda x: contrast(x, 0.2)),
+            layers.Lambda(lambda x: hue(x, 0.07)),
+            layers.Lambda(lambda x: invert(x, 0.5))
+            #layers.Lambda(lambda x: crop(x, 0.9, test['size_x'], test['size_y']))
+        ])
+    elif test['augment'] == "shallow":
+        data_augmentation = tf.keras.Sequential([
+            layers.RandomFlip("horizontal"),
+            layers.RandomRotation(0.15),
+            layers.Lambda(lambda x: shiney(x, 0.2))
+        ])
+    elif test['augment'] == 'none':
+        data_augmentation = tf.keras.Sequential([
+        ])
 
     model = tf.keras.Sequential([
         layers.Conv2D(16, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
@@ -140,15 +211,16 @@ for test in tests:
 
     model.compile(
         optimizer=tf.keras.optimizers.Adam(learning_rate=test['learning_rate']),
-        loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True),
+        loss=tf.losses.SparseCategoricalCrossentropy(),#(from_logits=True),
         metrics=['accuracy'])
 
-    ds_train = prepare(ds_train, batch_size=test['batch_size'], shuffle=True, augment=test['augment'])
+    ds_train = prepare(ds_train, batch_size=test['batch_size'], shuffle=True, augment=True)
     ds_val = prepare(ds_val, batch_size=test['batch_size'])
     ds_test = prepare(ds_test, batch_size=test['batch_size'])
 
     #for example in ds_train:
     #    img = np.array(example[0][0])
+    #    print(example)
     #    plt.figure()
     #    plt.imshow(img)
     #    plt.show()

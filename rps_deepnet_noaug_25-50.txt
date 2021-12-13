@@ -1,0 +1,128 @@
+    model = tf.keras.Sequential([
+        layers.Conv2D(64, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
+        layers.MaxPooling2D(),
+        layers.Dropout(0.1),
+
+        layers.Conv2D(64, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
+        layers.MaxPooling2D(),
+        layers.Dropout(0.1),
+
+        layers.Conv2D(128, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
+        layers.MaxPooling2D(),
+        layers.Dropout(0.2),
+
+        layers.Conv2D(128, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.BatchNormalization(),
+        layers.MaxPooling2D(),
+        layers.Dropout(0.5),
+
+        layers.Flatten(),
+        layers.Dense(512, activation='elu'),
+        layers.Dense(num_classes)
+    ])
+something
+{'dataset': 'rock_paper_scissors', 'size_x': 300, 'size_y': 300, 'augment': 'none', 'epochs': 100, 'batch_size': 32, 'learning_rate': 0.001, 'weight_decay': 0.0001, 'split': ['train[:20%]', 'train[80%:]', 'test']}
+Accuracy after 2 epochs: Train: 0.319444, Val: 0.311508, Test: 0.333333
+Accuracy after 4 epochs: Train: 0.456349, Val: 0.442460, Test: 0.360215
+Accuracy after 6 epochs: Train: 0.720238, Val: 0.708333, Test: 0.459677
+Accuracy after 8 epochs: Train: 0.642857, Val: 0.658730, Test: 0.424731
+Accuracy after 10 epochs: Train: 0.525794, Val: 0.537698, Test: 0.489247
+Accuracy after 12 epochs: Train: 0.488095, Val: 0.501984, Test: 0.505376
+Accuracy after 14 epochs: Train: 0.484127, Val: 0.496032, Test: 0.451613
+Accuracy after 16 epochs: Train: 0.488095, Val: 0.503968, Test: 0.435484
+Accuracy after 18 epochs: Train: 0.490079, Val: 0.505952, Test: 0.465054
+Accuracy after 20 epochs: Train: 0.494048, Val: 0.515873, Test: 0.500000
+Accuracy after 22 epochs: Train: 0.539683, Val: 0.559524, Test: 0.510753
+Accuracy after 24 epochs: Train: 0.630952, Val: 0.658730, Test: 0.521505
+Accuracy after 26 epochs: Train: 0.682540, Val: 0.698413, Test: 0.518817
+Accuracy after 28 epochs: Train: 0.714286, Val: 0.714286, Test: 0.526882
+Accuracy after 30 epochs: Train: 0.773810, Val: 0.757937, Test: 0.521505
+Accuracy after 32 epochs: Train: 0.859127, Val: 0.839286, Test: 0.551075
+Accuracy after 34 epochs: Train: 0.932540, Val: 0.910714, Test: 0.588710
+Accuracy after 36 epochs: Train: 0.964286, Val: 0.954365, Test: 0.620968
+Accuracy after 38 epochs: Train: 0.982143, Val: 0.968254, Test: 0.661290
+Accuracy after 40 epochs: Train: 0.996032, Val: 0.978175, Test: 0.674731
+Accuracy after 42 epochs: Train: 0.996032, Val: 0.978175, Test: 0.688172
+Accuracy after 44 epochs: Train: 0.998016, Val: 0.982143, Test: 0.690860
+Accuracy after 46 epochs: Train: 1.000000, Val: 0.990079, Test: 0.696237
+Accuracy after 48 epochs: Train: 1.000000, Val: 0.984127, Test: 0.698925
+Accuracy after 50 epochs: Train: 1.000000, Val: 0.982143, Test: 0.698925
+Accuracy after 52 epochs: Train: 1.000000, Val: 0.984127, Test: 0.706989
+Accuracy after 54 epochs: Train: 1.000000, Val: 0.982143, Test: 0.709677
+Accuracy after 56 epochs: Train: 1.000000, Val: 0.982143, Test: 0.706989
+Accuracy after 58 epochs: Train: 1.000000, Val: 0.988095, Test: 0.704301
+Accuracy after 60 epochs: Train: 1.000000, Val: 0.986111, Test: 0.704301
+Accuracy after 62 epochs: Train: 1.000000, Val: 0.984127, Test: 0.704301
+Accuracy after 64 epochs: Train: 1.000000, Val: 0.988095, Test: 0.698925
+Accuracy after 66 epochs: Train: 1.000000, Val: 0.986111, Test: 0.717742
+Accuracy after 68 epochs: Train: 1.000000, Val: 0.988095, Test: 0.709677
+Accuracy after 70 epochs: Train: 1.000000, Val: 0.988095, Test: 0.715054
+Accuracy after 72 epochs: Train: 1.000000, Val: 0.988095, Test: 0.715054
+Accuracy after 74 epochs: Train: 1.000000, Val: 0.988095, Test: 0.715054
+Accuracy after 76 epochs: Train: 1.000000, Val: 0.988095, Test: 0.725806
+Accuracy after 78 epochs: Train: 1.000000, Val: 0.988095, Test: 0.717742
+Accuracy after 80 epochs: Train: 1.000000, Val: 0.988095, Test: 0.720430
+Accuracy after 82 epochs: Train: 1.000000, Val: 0.984127, Test: 0.712366
+Accuracy after 84 epochs: Train: 1.000000, Val: 0.988095, Test: 0.720430
+Accuracy after 86 epochs: Train: 1.000000, Val: 0.988095, Test: 0.723118
+Accuracy after 88 epochs: Train: 1.000000, Val: 0.988095, Test: 0.725806
+Accuracy after 90 epochs: Train: 1.000000, Val: 0.988095, Test: 0.723118
+Accuracy after 92 epochs: Train: 1.000000, Val: 0.988095, Test: 0.723118
+Accuracy after 94 epochs: Train: 1.000000, Val: 0.988095, Test: 0.723118
+Accuracy after 96 epochs: Train: 1.000000, Val: 0.988095, Test: 0.725806
+Accuracy after 98 epochs: Train: 1.000000, Val: 0.988095, Test: 0.725806
+Accuracy after 100 epochs: Train: 1.000000, Val: 0.988095, Test: 0.725806
+{'dataset': 'rock_paper_scissors', 'size_x': 300, 'size_y': 300, 'augment': 'none', 'epochs': 100, 'batch_size': 32, 'learning_rate': 0.001, 'weight_decay': 0.0001, 'split': ['train[:40%]', 'train[80%:]', 'test']}
+Accuracy after 2 epochs: Train: 0.332341, Val: 0.309524, Test: 0.333333
+Accuracy after 4 epochs: Train: 0.322421, Val: 0.353175, Test: 0.376344
+Accuracy after 6 epochs: Train: 0.318452, Val: 0.347222, Test: 0.333333
+Accuracy after 8 epochs: Train: 0.318452, Val: 0.347222, Test: 0.333333
+Accuracy after 10 epochs: Train: 0.318452, Val: 0.347222, Test: 0.333333
+Accuracy after 12 epochs: Train: 0.318452, Val: 0.347222, Test: 0.333333
+Accuracy after 14 epochs: Train: 0.327381, Val: 0.363095, Test: 0.333333
+Accuracy after 16 epochs: Train: 0.428571, Val: 0.470238, Test: 0.333333
+Accuracy after 18 epochs: Train: 0.597222, Val: 0.607143, Test: 0.336022
+Accuracy after 20 epochs: Train: 0.771825, Val: 0.781746, Test: 0.513441
+Accuracy after 22 epochs: Train: 0.854167, Val: 0.863095, Test: 0.569892
+Accuracy after 24 epochs: Train: 0.873016, Val: 0.888889, Test: 0.580645
+Accuracy after 26 epochs: Train: 0.928571, Val: 0.934524, Test: 0.610215
+Accuracy after 28 epochs: Train: 0.958333, Val: 0.950397, Test: 0.610215
+Accuracy after 30 epochs: Train: 0.978175, Val: 0.970238, Test: 0.618280
+Accuracy after 32 epochs: Train: 0.990079, Val: 0.978175, Test: 0.623656
+Accuracy after 34 epochs: Train: 0.990079, Val: 0.972222, Test: 0.626344
+Accuracy after 36 epochs: Train: 0.988095, Val: 0.972222, Test: 0.623656
+Accuracy after 38 epochs: Train: 0.987103, Val: 0.974206, Test: 0.626344
+Accuracy after 40 epochs: Train: 0.990079, Val: 0.978175, Test: 0.629032
+Accuracy after 42 epochs: Train: 0.988095, Val: 0.972222, Test: 0.623656
+Accuracy after 44 epochs: Train: 0.978175, Val: 0.968254, Test: 0.626344
+Accuracy after 46 epochs: Train: 0.958333, Val: 0.952381, Test: 0.620968
+Accuracy after 48 epochs: Train: 0.971230, Val: 0.962302, Test: 0.623656
+Accuracy after 50 epochs: Train: 0.988095, Val: 0.974206, Test: 0.629032
+Accuracy after 52 epochs: Train: 0.978175, Val: 0.968254, Test: 0.629032
+Accuracy after 54 epochs: Train: 0.979167, Val: 0.970238, Test: 0.626344
+Accuracy after 56 epochs: Train: 0.976190, Val: 0.968254, Test: 0.626344
+Accuracy after 58 epochs: Train: 0.972222, Val: 0.964286, Test: 0.629032
+Accuracy after 60 epochs: Train: 0.970238, Val: 0.964286, Test: 0.629032
+Accuracy after 62 epochs: Train: 0.968254, Val: 0.964286, Test: 0.629032
+Accuracy after 64 epochs: Train: 0.966270, Val: 0.962302, Test: 0.623656
+Accuracy after 66 epochs: Train: 0.945437, Val: 0.946429, Test: 0.610215
+Accuracy after 68 epochs: Train: 0.924603, Val: 0.936508, Test: 0.599462
+Accuracy after 70 epochs: Train: 0.943452, Val: 0.946429, Test: 0.607527
+Accuracy after 72 epochs: Train: 0.951389, Val: 0.952381, Test: 0.612903
+Accuracy after 74 epochs: Train: 0.969246, Val: 0.964286, Test: 0.623656
+Accuracy after 76 epochs: Train: 0.947421, Val: 0.948413, Test: 0.610215
+Accuracy after 78 epochs: Train: 0.916667, Val: 0.934524, Test: 0.599462
+Accuracy after 80 epochs: Train: 0.925595, Val: 0.938492, Test: 0.602151
+Accuracy after 82 epochs: Train: 0.916667, Val: 0.934524, Test: 0.599462
+Accuracy after 84 epochs: Train: 0.912698, Val: 0.932540, Test: 0.596774
+Accuracy after 86 epochs: Train: 0.906746, Val: 0.930556, Test: 0.599462
+Accuracy after 88 epochs: Train: 0.908730, Val: 0.934524, Test: 0.599462
+Accuracy after 90 epochs: Train: 0.905754, Val: 0.930556, Test: 0.599462
+Accuracy after 92 epochs: Train: 0.904762, Val: 0.930556, Test: 0.594086
+Accuracy after 94 epochs: Train: 0.890873, Val: 0.916667, Test: 0.594086
+Accuracy after 96 epochs: Train: 0.896825, Val: 0.922619, Test: 0.596774
+Accuracy after 98 epochs: Train: 0.890873, Val: 0.906746, Test: 0.588710
+Accuracy after 100 epochs: Train: 0.884921, Val: 0.902778, Test: 0.580645

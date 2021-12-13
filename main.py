@@ -27,103 +27,103 @@ def prepare(ds, batch_size, shuffle=False, augment=False):
 
 tests = [
     {
-        "dataset": "cifar10",
-        "size_x": None,
-        "size_y": None,
+        "dataset": "cats_vs_dogs",
+        "size_x": 200,
+        "size_y": 200,
         "augment": "none",
         "epochs": 64,
         "batch_size": 128,
         "learning_rate": 1e-3,
         "weight_decay": 1e-4,
-        "split": ['train[:20%]', 'train[80%:]', 'test']
+        "split": ['train[:20%]', 'train[80%:90%]', 'train[90%:]']
     },
     {
-        "dataset": "cifar10",
-        "size_x": None,
-        "size_y": None,
+        "dataset": "cats_vs_dogs",
+        "size_x": 200,
+        "size_y": 200,
         "augment": "none",
         "epochs": 64,
         "batch_size": 128,
         "learning_rate": 1e-3,
         "weight_decay": 1e-4,
-        "split": ['train[:40%]', 'train[80%:]', 'test']
+        "split": ['train[:40%]', 'train[80%:90%]', 'train[90%:]']
     },
     {
-        "dataset": "cifar10",
-        "size_x": None,
-        "size_y": None,
+        "dataset": "cats_vs_dogs",
+        "size_x": 200,
+        "size_y": 200,
         "augment": "none",
         "epochs": 64,
         "batch_size": 128,
         "learning_rate": 1e-3,
         "weight_decay": 1e-4,
-        "split": ['train[:80%]', 'train[80%:]', 'test']
+        "split": ['train[:80%]', 'train[80%:90%]', 'train[90%:]']
     },
     {
-        "dataset": "cifar10",
-        "size_x": None,
-        "size_y": None,
+        "dataset": "cats_vs_dogs",
+        "size_x": 200,
+        "size_y": 200,
         "augment": "shallow",
         "epochs": 128,
         "batch_size": 128,
         "learning_rate": 1e-3,
         "weight_decay": 1e-4,
-        "split": ['train[:20%]', 'train[80%:]', 'test']
+        "split": ['train[:20%]', 'train[80%:90%]', 'train[90%:]']
     },
     {
-        "dataset": "cifar10",
-        "size_x": None,
-        "size_y": None,
+        "dataset": "cats_vs_dogs",
+        "size_x": 200,
+        "size_y": 200,
         "augment": "shallow",
         "epochs": 128,
         "batch_size": 128,
         "learning_rate": 1e-3,
         "weight_decay": 1e-4,
-        "split": ['train[:40%]', 'train[80%:]', 'test']
+        "split": ['train[:40%]', 'train[80%:90%]', 'train[90%:]']
     },
     {
-        "dataset": "cifar10",
-        "size_x": None,
-        "size_y": None,
+        "dataset": "cats_vs_dogs",
+        "size_x": 200,
+        "size_y": 200,
         "augment": "shallow",
         "epochs": 128,
         "batch_size": 128,
         "learning_rate": 1e-3,
         "weight_decay": 1e-4,
-        "split": ['train[:80%]', 'train[80%:]', 'test']
+        "split": ['train[:80%]', 'train[80%:90%]', 'train[90%:]']
     },
     {
-        "dataset": "cifar10",
-        "size_x": None,
-        "size_y": None,
+        "dataset": "cats_vs_dogs",
+        "size_x": 200,
+        "size_y": 200,
         "augment": "deep",
         "epochs": 128,
         "batch_size": 128,
         "learning_rate": 1e-3,
         "weight_decay": 1e-4,
-        "split": ['train[:20%]', 'train[80%:]', 'test']
+        "split": ['train[:20%]', 'train[80%:90%]', 'train[90%:]']
     },
     {
-        "dataset": "cifar10",
-        "size_x": None,
-        "size_y": None,
+        "dataset": "cats_vs_dogs",
+        "size_x": 200,
+        "size_y": 200,
         "augment": "deep",
         "epochs": 128,
         "batch_size": 128,
         "learning_rate": 1e-3,
         "weight_decay": 1e-4,
-        "split": ['train[:40%]', 'train[80%:]', 'test']
+        "split": ['train[:40%]', 'train[80%:90%]', 'train[90%:]']
     },
     {
-        "dataset": "cifar10",
-        "size_x": None,
-        "size_y": None,
+        "dataset": "cats_vs_dogs",
+        "size_x": 200,
+        "size_y": 200,
         "augment": "deep",
         "epochs": 128,
         "batch_size": 128,
         "learning_rate": 1e-3,
         "weight_decay": 1e-4,
-        "split": ['train[:80%]', 'train[80%:]', 'test']
+        "split": ['train[:80%]', 'train[80%:90%]', 'train[90%:]']
     },
 ]
 
@@ -176,21 +176,27 @@ for test in tests:
         ])
 
     model = tf.keras.Sequential([
-        layers.Conv2D(64, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
         layers.MaxPooling2D(),
-        layers.Dropout(0.05),
-
-        layers.Conv2D(128, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
         layers.MaxPooling2D(),
-
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
         layers.Flatten(),
-        #layers.Dense(1024, activation='elu'),
-        layers.Dense(num_classes, activation='softmax')
+        layers.Dense(1024, activation='relu'),
+        layers.Dropout(0.1),
+        layers.Dense(num_classes)
     ])
 
     model.compile(
         optimizer=tf.keras.optimizers.Adam(learning_rate=test['learning_rate']),
-        loss=tf.losses.SparseCategoricalCrossentropy(),#(from_logits=True),
+        loss=tf.losses.SparseCategoricalCrossentropy(from_logits=True),
         metrics=['accuracy'])
 
     ds_train = prepare(ds_train, batch_size=test['batch_size'], shuffle=True, augment=True)

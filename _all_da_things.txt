@@ -128,10 +128,13 @@ deep net (27 layers total, 8 conv layers):
     "weight_decay": 1e-4,
     ------------------------------------------------------------------------------------------------------------------------
     deep aug (horiz_flip+rot+sat+brightness+contrast+hue+invert):
+        Train: 0.844475, Val: 0.783100, Test: 0.783500
     deep aug, 50%:
+        Train: 0.829750, Val: 0.761800, Test: 0.755900
     deep aug, 25%:
+        Train: 0.812500, Val: 0.699800, Test: 0.694200
     shallow aug (horiz_flip+rot+brightness):
-        Train: 0.841450, Val: 0.777800, Test: 0.768600
+        Train: 0.880525, Val: 0.828800, Test: 0.823600
     shallow aug, 50%:
         Train: 0.858500, Val: 0.764100, Test: 0.755700
     shallow aug, 25%:
@@ -142,18 +145,117 @@ deep net (27 layers total, 8 conv layers):
         Train: 0.998800, Val: 0.790200, Test: 0.793900
     no aug, 25%:
         Train: 0.999700, Val: 0.741700, Test: 0.728200
-shallow net:
+shallow net (7 layers total, 2 conv layers):
+    model = tf.keras.Sequential([
+        layers.Conv2D(64, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.MaxPooling2D(),
+        layers.Dropout(0.05),
+
+        layers.Conv2D(128, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.MaxPooling2D(),
+
+        layers.Flatten(),
+        layers.Dense(num_classes, activation='softmax')
+    ])
     "epochs": 64,
     "batch_size": 128,
     "learning_rate": 5e-4,
     "weight_decay": 1e-4,
     ------------------------------------------------------------------------------------------------------------------------
     deep aug (horiz_flip+rot+sat+brightness+contrast+hue+invert):
+        Train: 0.625950, Val: 0.598100, Test: 0.595700
     deep aug, 50%:
+        Train: 0.591150, Val: 0.582400, Test: 0.580000
     deep aug, 25%:
+        Train: 0.608300, Val: 0.539800, Test: 0.542300
     shallow aug (horiz_flip+rot+brightness):
+        Train: 0.688450, Val: 0.668900, Test: 0.662500
     shallow aug, 50%:
+        Train: 0.662400, Val: 0.629000, Test: 0.629800
     shallow aug, 25%:
+        Train: 0.678100, Val: 0.612500, Test: 0.619500
     no aug:
+        Train: 0.757575, Val: 0.664900, Test: 0.666000
     no aug, 50%:
+        Train: 0.766200, Val: 0.625000, Test: 0.633300
     no aug, 25%:
+        Train: 0.961700, Val: 0.585300, Test: 0.595700
+
+cats_vs_dogs: 23262 images
+deep net (16 layers total, 8 conv layers):
+    model = tf.keras.Sequential([
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.Conv2D(16, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.Conv2D(32, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.Conv2D(64, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.Conv2D(128, 3, padding='same', activation='relu'),
+        layers.MaxPooling2D(),
+        layers.Flatten(),
+        layers.Dense(1024, activation='relu'),
+        layers.Dropout(0.1),
+        layers.Dense(num_classes)
+    ])
+    "epochs": 128,
+    "batch_size": 128,
+    "learning_rate": 1e-3,
+    "weight_decay": 1e-4,
+    ------------------------------------------------------------------------------------------------------------------------
+    deep aug (horiz_flip+rot+sat+brightness+contrast+hue+invert):
+        Train: 0.844475, Val: 0.783100, Test: 0.783500
+    deep aug, 50%:
+        Train: 0.829750, Val: 0.761800, Test: 0.755900
+    deep aug, 25%:
+        Train: 0.812500, Val: 0.699800, Test: 0.694200
+    shallow aug (horiz_flip+rot+brightness):
+        Train: 0.976034, Val: 0.944540, Test: 0.950989
+    shallow aug, 50%:
+        Train: 0.980226, Val: 0.856406, Test: 0.870593
+    shallow aug, 25%:
+        Train: 0.981513, Val: 0.850817, Test: 0.872313
+    no aug:
+        Train: 1.000000, Val: 0.837919, Test: 0.856836
+    no aug, 50%:
+        Train: 0.916497, Val: 0.806535, Test: 0.814273
+    no aug, 25%:
+        Train: 0.804815, Val: 0.746346, Test: 0.754084
+shallow net (7 layers total, 2 conv layers):
+    model = tf.keras.Sequential([
+        layers.Conv2D(64, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.MaxPooling2D(),
+        layers.Dropout(0.05),
+
+        layers.Conv2D(128, 3, padding='same', kernel_regularizer=regularizers.l2(test['weight_decay']), activation='elu'),
+        layers.MaxPooling2D(),
+
+        layers.Flatten(),
+        layers.Dense(num_classes, activation='softmax')
+    ])
+    "epochs": 64,
+    "batch_size": 128,
+    "learning_rate": 5e-4,
+    "weight_decay": 1e-4,
+    ------------------------------------------------------------------------------------------------------------------------
+    deep aug (horiz_flip+rot+sat+brightness+contrast+hue+invert):
+        Train: 0.625950, Val: 0.598100, Test: 0.595700
+    deep aug, 50%:
+        Train: 0.591150, Val: 0.582400, Test: 0.580000
+    deep aug, 25%:
+        Train: 0.608300, Val: 0.539800, Test: 0.542300
+    shallow aug (horiz_flip+rot+brightness):
+        Train: 0.688450, Val: 0.668900, Test: 0.662500
+    shallow aug, 50%:
+        Train: 0.662400, Val: 0.629000, Test: 0.629800
+    shallow aug, 25%:
+        Train: 0.678100, Val: 0.612500, Test: 0.619500
+    no aug:
+        Train: 0.757575, Val: 0.664900, Test: 0.666000
+    no aug, 50%:
+        Train: 0.766200, Val: 0.625000, Test: 0.633300
+    no aug, 25%:
+        Train: 0.961700, Val: 0.585300, Test: 0.595700

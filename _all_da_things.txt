@@ -207,11 +207,11 @@ deep net (16 layers total, 8 conv layers):
     "weight_decay": 1e-4,
     ------------------------------------------------------------------------------------------------------------------------
     deep aug (horiz_flip+rot+sat+brightness+contrast+hue+invert):
-        Train: 0.844475, Val: 0.783100, Test: 0.783500
+        Train: 0.974476, Val: 0.938091, Test: 0.950989
     deep aug, 50%:
-        Train: 0.829750, Val: 0.761800, Test: 0.755900
+        Train: 0.974960, Val: 0.894239, Test: 0.913586
     deep aug, 25%:
-        Train: 0.812500, Val: 0.699800, Test: 0.694200
+        Train: 0.955718, Val: 0.855976, Test: 0.867154
     shallow aug (horiz_flip+rot+brightness):
         Train: 0.976034, Val: 0.944540, Test: 0.950989
     shallow aug, 50%:

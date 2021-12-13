@@ -27,15 +27,103 @@ def prepare(ds, batch_size, shuffle=False, augment=False):
 
 tests = [
     {
-        "dataset": "cats_vs_dogs",
-        "size_x": 200,
-        "size_y": 200,
-        "augment": "deep",
-        "epochs": 64,
+        "dataset": "svhn_cropped",
+        "size_x": None,
+        "size_y": None,
+        "augment": "none",
+        "epochs": 32,
         "batch_size": 128,
         "learning_rate": 1e-3,
         "weight_decay": 1e-4,
-        "split": ['train[:80%]', 'train[80%:90%]', 'train[90%:]']
+        "split": ['train[:20%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "svhn_cropped",
+        "size_x": None,
+        "size_y": None,
+        "augment": "none",
+        "epochs": 32,
+        "batch_size": 128,
+        "learning_rate": 1e-3,
+        "weight_decay": 1e-4,
+        "split": ['train[:40%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "svhn_cropped",
+        "size_x": None,
+        "size_y": None,
+        "augment": "none",
+        "epochs": 32,
+        "batch_size": 128,
+        "learning_rate": 1e-3,
+        "weight_decay": 1e-4,
+        "split": ['train[:80%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "svhn_cropped",
+        "size_x": None,
+        "size_y": None,
+        "augment": "shallow",
+        "epochs": 128,
+        "batch_size": 128,
+        "learning_rate": 1e-3,
+        "weight_decay": 1e-4,
+        "split": ['train[:20%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "svhn_cropped",
+        "size_x": None,
+        "size_y": None,
+        "augment": "shallow",
+        "epochs": 128,
+        "batch_size": 128,
+        "learning_rate": 1e-3,
+        "weight_decay": 1e-4,
+        "split": ['train[:40%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "svhn_cropped",
+        "size_x": None,
+        "size_y": None,
+        "augment": "shallow",
+        "epochs": 128,
+        "batch_size": 128,
+        "learning_rate": 1e-3,
+        "weight_decay": 1e-4,
+        "split": ['train[:80%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "svhn_cropped",
+        "size_x": None,
+        "size_y": None,
+        "augment": "deep",
+        "epochs": 256,
+        "batch_size": 128,
+        "learning_rate": 1e-3,
+        "weight_decay": 1e-4,
+        "split": ['train[:20%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "svhn_cropped",
+        "size_x": None,
+        "size_y": None,
+        "augment": "deep",
+        "epochs": 256,
+        "batch_size": 128,
+        "learning_rate": 1e-3,
+        "weight_decay": 1e-4,
+        "split": ['train[:40%]', 'train[80%:]', 'test']
+    },
+    {
+        "dataset": "svhn_cropped",
+        "size_x": None,
+        "size_y": None,
+        "augment": "deep",
+        "epochs": 256,
+        "batch_size": 128,
+        "learning_rate": 1e-3,
+        "weight_decay": 1e-4,
+        "split": ['train[:80%]', 'train[80%:]', 'test']
     },
 ]
 
@@ -81,7 +169,7 @@ for test in tests:
         data_augmentation = tf.keras.Sequential([
             layers.RandomFlip("horizontal"),
             layers.RandomRotation(0.15),
-            layers.Lambda(lambda x: shiney(x, 0.2))
+            #layers.Lambda(lambda x: shiney(x, 0.2))
         ])
     elif test['augment'] == 'none':
         data_augmentation = tf.keras.Sequential([
@@ -94,7 +182,7 @@ for test in tests:
         layers.MaxPooling2D(),
         layers.Flatten(),
         layers.Dense(1024, activation='relu'),
-        layers.Dropout(0.1),
+        layers.Dropout(0.3),
         layers.Dense(num_classes)
     ])
 

@@ -1,0 +1,53 @@
+something
+{'dataset': 'deep_weeds', 'size_x': 256, 'size_y': 256, 'augment': 'none', 'epochs': 32, 'batch_size': 128, 'learning_rate': 0.001, 'weight_decay': 0.0001, 'split': ['train[:20%]', 'train[80%:90%]', 'train[90%:]']}
+Accuracy after 2 epochs: Train: 0.140206, Val: 0.137065, Test: 0.135351
+Accuracy after 4 epochs: Train: 0.370074, Val: 0.353512, Test: 0.379783
+Accuracy after 6 epochs: Train: 0.294689, Val: 0.276413, Test: 0.280411
+Accuracy after 8 epochs: Train: 0.500000, Val: 0.484295, Test: 0.479726
+Accuracy after 10 epochs: Train: 0.504569, Val: 0.482581, Test: 0.482010
+Accuracy after 12 epochs: Train: 0.527413, Val: 0.494575, Test: 0.486579
+Accuracy after 14 epochs: Train: 0.561108, Val: 0.496859, Test: 0.503141
+Accuracy after 16 epochs: Train: 0.632781, Val: 0.508281, Test: 0.508281
+Accuracy after 18 epochs: Train: 0.772130, Val: 0.490006, Test: 0.514563
+Accuracy after 20 epochs: Train: 0.889777, Val: 0.512279, Test: 0.530554
+Accuracy after 22 epochs: Train: 0.875785, Val: 0.508852, Test: 0.535123
+Accuracy after 24 epochs: Train: 0.929183, Val: 0.505425, Test: 0.528270
+Accuracy after 26 epochs: Train: 0.975728, Val: 0.519703, Test: 0.520274
+Accuracy after 28 epochs: Train: 0.996002, Val: 0.521987, Test: 0.541405
+Accuracy after 30 epochs: Train: 1.000000, Val: 0.526556, Test: 0.543118
+Accuracy after 32 epochs: Train: 1.000000, Val: 0.516847, Test: 0.534552
+{'dataset': 'deep_weeds', 'size_x': 256, 'size_y': 256, 'augment': 'none', 'epochs': 32, 'batch_size': 128, 'learning_rate': 0.001, 'weight_decay': 0.0001, 'split': ['train[:40%]', 'train[80%:90%]', 'train[90%:]']}
+Accuracy after 2 epochs: Train: 0.528127, Val: 0.504283, Test: 0.507139
+Accuracy after 4 epochs: Train: 0.528983, Val: 0.505425, Test: 0.507139
+Accuracy after 6 epochs: Train: 0.503569, Val: 0.458024, Test: 0.464306
+Accuracy after 8 epochs: Train: 0.592661, Val: 0.519703, Test: 0.530554
+Accuracy after 10 epochs: Train: 0.764991, Val: 0.541405, Test: 0.544832
+Accuracy after 12 epochs: Train: 0.966591, Val: 0.577384, Test: 0.594517
+Accuracy after 14 epochs: Train: 0.986151, Val: 0.582524, Test: 0.603084
+Accuracy after 16 epochs: Train: 0.978441, Val: 0.564249, Test: 0.594517
+Accuracy after 18 epochs: Train: 0.972159, Val: 0.560822, Test: 0.563107
+Accuracy after 20 epochs: Train: 0.987436, Val: 0.565962, Test: 0.585380
+Accuracy after 22 epochs: Train: 0.981154, Val: 0.557967, Test: 0.593946
+Accuracy after 24 epochs: Train: 0.988435, Val: 0.580811, Test: 0.579669
+Accuracy after 26 epochs: Train: 0.998858, Val: 0.578527, Test: 0.602513
+Accuracy after 28 epochs: Train: 0.995003, Val: 0.572816, Test: 0.572816
+Accuracy after 30 epochs: Train: 0.968875, Val: 0.566533, Test: 0.588235
+Accuracy after 32 epochs: Train: 0.889063, Val: 0.495146, Test: 0.482581
+{'dataset': 'deep_weeds', 'size_x': 256, 'size_y': 256, 'augment': 'none', 'epochs': 32, 'batch_size': 128, 'learning_rate': 0.001, 'weight_decay': 0.0001, 'split': ['train[:80%]', 'train[80%:90%]', 'train[90%:]']}
+Accuracy after 2 epochs: Train: 0.119012, Val: 0.123358, Test: 0.113649
+Accuracy after 4 epochs: Train: 0.574641, Val: 0.516276, Test: 0.523130
+Accuracy after 6 epochs: Train: 0.798101, Val: 0.599657, Test: 0.610508
+Accuracy after 8 epochs: Train: 0.860570, Val: 0.617933, Test: 0.620217
+Accuracy after 10 epochs: Train: 0.932748, Val: 0.626499, Test: 0.627641
+Accuracy after 12 epochs: Train: 0.948597, Val: 0.632210, Test: 0.627070
+Accuracy after 14 epochs: Train: 0.947312, Val: 0.615077, Test: 0.603655
+Accuracy after 16 epochs: Train: 0.938816, Val: 0.596802, Test: 0.633352
+Accuracy after 18 epochs: Train: 0.969872, Val: 0.612222, Test: 0.612222
+Accuracy after 20 epochs: Train: 0.939887, Val: 0.619646, Test: 0.613935
+Accuracy after 22 epochs: Train: 0.855287, Val: 0.561393, Test: 0.555111
+Accuracy after 24 epochs: Train: 0.955522, Val: 0.619646, Test: 0.617933
+Accuracy after 26 epochs: Train: 0.927536, Val: 0.587093, Test: 0.589949
+Accuracy after 28 epochs: Train: 0.668309, Val: 0.407196, Test: 0.396916
+Accuracy after 30 epochs: Train: 0.934676, Val: 0.567676, Test: 0.577955
+Accuracy after 32 epochs: Train: 0.965446, Val: 0.584238, Test: 0.593375
+{'dataset': 'deep_weeds', 'size_x': 256, 'size_y': 256, 'augment': 'shallow', 'epochs': 64, 'batch_size': 128, 'learning_rate': 0.001, 'weight_decay': 0.0001, 'split': ['train[:20%]', 'train[80%:90%]', 'train[90%:]']}
